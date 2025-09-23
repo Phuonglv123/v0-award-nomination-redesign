@@ -1,12 +1,16 @@
-import { Award, Star } from "lucide-react"
+"use client"
+
+import { Award, Star, Plus } from "lucide-react"
 import Image from "next/image"
+import { Button } from "@/components/ui/button"
 
 interface NominationHeaderProps {
   selectedMonth: number
   nomineeCount: number
+  onNominateClick: () => void // Added prop for nomination button click
 }
 
-export function NominationHeader({ selectedMonth, nomineeCount }: NominationHeaderProps) {
+export function NominationHeader({ selectedMonth, nomineeCount, onNominateClick }: NominationHeaderProps) {
   const monthNames = {
     5: "tháng 5",
     6: "tháng 6",
@@ -46,12 +50,12 @@ export function NominationHeader({ selectedMonth, nomineeCount }: NominationHead
 
           <h1 className="text-balance text-4xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl">
             <span className="text-white">GE </span>
-            <span className="brand-green">STAR</span>
+            <span className="text-white">STAR</span>
             <br />
             <span className="text-white">AWARD </span>
-            <span className="brand-pink">2025</span>
+            <span className="text-white">2025</span>
             <br />
-            <span className="text-2xl sm:text-3xl lg:text-4xl mt-4 block">
+            <span className="text-2xl sm:text-3xl lg:text-4xl mt-4 block text-white/90">
               Danh sách đề cử {monthNames[selectedMonth as keyof typeof monthNames]}
             </span>
           </h1>
@@ -74,6 +78,16 @@ export function NominationHeader({ selectedMonth, nomineeCount }: NominationHead
                 {quarterInfo[selectedMonth as keyof typeof quarterInfo]}/2025
               </span>
             </div>
+          </div>
+
+          <div className="mt-8">
+            <Button
+              onClick={onNominateClick}
+              className="bg-[#f97316] hover:bg-[#ea580c] text-white px-8 py-3 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105"
+            >
+              <Plus className="h-5 w-5 mr-2" />
+              Đề cử nhân viên xuất sắc
+            </Button>
           </div>
         </div>
       </div>

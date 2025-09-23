@@ -5,6 +5,7 @@ import { NominationHeader } from "@/components/nomination-header"
 import { NomineeGrid } from "@/components/nominee-grid"
 import { StatsSection } from "@/components/stats-section"
 import { MonthSelector } from "@/components/month-selector"
+import { NominationModal } from "@/components/nomination-modal" // Added modal import
 
 const nomineesByMonth = {
   5: [
@@ -140,12 +141,17 @@ const nomineesByMonth = {
 
 export default function NominationPage() {
   const [selectedMonth, setSelectedMonth] = useState(5)
+  const [isNominationModalOpen, setIsNominationModalOpen] = useState(false) // Added modal state
 
   const currentNominees = nomineesByMonth[selectedMonth as keyof typeof nomineesByMonth] || []
 
   return (
     <div className="min-h-screen">
-      <NominationHeader selectedMonth={selectedMonth} nomineeCount={currentNominees.length} />
+      <NominationHeader
+        selectedMonth={selectedMonth}
+        nomineeCount={currentNominees.length}
+        onNominateClick={() => setIsNominationModalOpen(true)} // Added nomination click handler
+      />
 
       <div className="mx-auto max-w-7xl px-6 py-8">
         <div className="flex justify-center">
@@ -155,6 +161,8 @@ export default function NominationPage() {
 
       <StatsSection />
       <NomineeGrid nominees={currentNominees} />
+
+      <NominationModal isOpen={isNominationModalOpen} onClose={() => setIsNominationModalOpen(false)} />
     </div>
   )
 }

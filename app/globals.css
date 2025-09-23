@@ -43,6 +43,7 @@
   --galaxy-green: #22c55e;
   --galaxy-pink: #ec4899;
   --galaxy-orange: #f97316;
+  --font-inter: "Inter", sans-serif;
 }
 
 .dark {
@@ -81,7 +82,8 @@
 }
 
 @theme inline {
-  /* optional: --font-sans, --font-serif, --font-mono if they are applied in the layout.tsx */
+  /* Added Inter font configuration for Vietnamese support */
+  --font-sans: var(--font-inter);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -128,6 +130,10 @@
     /* Changed to blue gradient background matching homepage */
     background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
     @apply text-white;
+    /* Added better font rendering for Vietnamese text */
+    font-feature-settings: "rlig" 1, "calt" 1, "kern" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
