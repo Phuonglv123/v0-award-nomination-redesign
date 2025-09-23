@@ -37,9 +37,9 @@ export function StatsSection() {
               <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-accent/10">
                 <stat.icon className="h-6 w-6 text-accent" />
               </div>
-              <div className="text-3xl font-serif font-bold text-foreground">{stat.value}</div>
-              <div className="mt-1 text-sm font-medium text-foreground">{stat.label}</div>
-              <div className="mt-1 text-xs text-muted-foreground">{stat.description}</div>
+              <div className="text-3xl font-serif font-bold text-white">{stat.value}</div>
+              <div className="mt-1 text-sm font-medium text-white">{stat.label}</div>
+              <div className="mt-1 text-xs text-white">{stat.description}</div>
             </div>
           ))}
         </div>
