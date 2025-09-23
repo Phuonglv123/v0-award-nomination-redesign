@@ -17,10 +17,10 @@ export function NomineeGrid({ nominees }: NomineeGridProps) {
     <section className="py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center mb-16 text-white">
-          <h2 className="text-3xl font-serif font-bold tracking-tight text-foreground sm:text-4xl">
+          <h2 className="text-3xl font-serif font-bold tracking-tight sm:text-4xl text-white">
             Những cá nhân xuất sắc
           </h2>
-          <p className="mt-4 text-lg leading-8 text-muted-foreground">
+          <p className="mt-4 text-lg leading-8 text-white">
             Được đề cử dựa trên thành tích và đóng góp nổi bật trong tháng qua
           </p>
         </div>
