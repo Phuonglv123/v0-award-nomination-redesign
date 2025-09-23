@@ -16,7 +16,7 @@ export function NomineeGrid({ nominees }: NomineeGridProps) {
   return (
     <section className="py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center mb-16">
+        <div className="mx-auto max-w-2xl text-center mb-16 text-white">
           <h2 className="text-3xl font-serif font-bold tracking-tight text-foreground sm:text-4xl">
             Những cá nhân xuất sắc
           </h2>
