@@ -8,6 +8,8 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
+import { Select } from "@/components/ui/select"
+import { submitNomination, type NominationData } from "@/lib/services"
 
 interface NominationModalProps {
   isOpen: boolean
@@ -24,27 +26,49 @@ export function NominationModal({ isOpen, onClose }: NominationModalProps) {
     reason: "",
     nominatorName: "",
     nominatorEmail: "",
+    source: "",
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitMessage, setSubmitMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null)
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission here
-    console.log("Nomination submitted:", formData)
-    onClose()
-    // Reset form
-    setFormData({
-      nomineeName: "",
-      nomineeEmail: "",
-      department: "",
-      position: "",
-      achievements: "",
-      reason: "",
-      nominatorName: "",
-      nominatorEmail: "",
-    })
+    setIsSubmitting(true)
+    setSubmitMessage(null)
+
+    try {
+      const response = await submitNomination(formData as NominationData)
+      
+      if (response.success) {
+        setSubmitMessage({ type: 'success', text: response.message || 'Đề cử đã được gửi thành công!' })
+        // Reset form after successful submission
+        setTimeout(() => {
+          setFormData({
+            nomineeName: "",
+            nomineeEmail: "",
+            department: "",
+            position: "",
+            achievements: "",
+            reason: "",
+            nominatorName: "",
+            nominatorEmail: "",
+            source: "",
+          })
+          setSubmitMessage(null)
+          onClose()
+        }, 2000)
+      } else {
+        setSubmitMessage({ type: 'error', text: response.error || 'Có lỗi xảy ra khi gửi đề cử' })
+      }
+    } catch (error) {
+      setSubmitMessage({ type: 'error', text: 'Có lỗi xảy ra khi gửi đề cử' })
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
@@ -231,15 +255,63 @@ export function NominationModal({ isOpen, onClose }: NominationModalProps) {
                 />
               </div>
             </div>
+
+            <div>
+              <Label htmlFor="source" className="text-sm font-medium text-gray-700">
+                Hạng mục đề cử *
+              </Label>
+              <Select
+                id="source"
+                name="source"
+                value={formData.source}
+                onChange={handleInputChange}
+                required
+                className="mt-1 text-gray-900"
+              >
+                <option value="">Chọn hạng mục đề cử</option>
+                <option value="Nhân viên xuất sắc tháng 7">Nhân viên xuất sắc tháng 7</option>
+                <option value="Phòng ban/trung tâm xuất sắc tháng 7">Phòng ban/trung tâm xuất sắc tháng 7</option>
+                <option value="Nhân viên xuất sắc tháng 8">Nhân viên xuất sắc tháng 8</option>
+                <option value="Phòng ban/trung tâm xuất sắc tháng 8">Phòng ban/trung tâm xuất sắc tháng 8</option>
+                <option value="Nhân viên xuất sắc tháng 9">Nhân viên xuất sắc tháng 9</option>
+                <option value="Phòng ban/trung tâm xuất sắc tháng 9">Phòng ban/trung tâm xuất sắc tháng 9</option>
+                <option value="Nhân viên kinh doanh/tuyển sinh xuất sắc quý 3">Nhân viên kinh doanh/tuyển sinh xuất sắc quý 3</option>
+                <option value="Nhân viên giáo vụ xuất sắc quý 3">Nhân viên giáo vụ xuất sắc quý 3</option>
+                <option value="Nhân viên sản phẩm/công nghệ xuất sắc quý 3">Nhân viên sản phẩm/công nghệ xuất sắc quý 3</option>
+                <option value="Nhân viên hỗ trợ xuất sắc quý 3">Nhân viên hỗ trợ xuất sắc quý 3</option>
+                <option value="Phòng ban xuất sắc quý 3">Phòng ban xuất sắc quý 3</option>
+              </Select>
+            </div>
           </div>
+
+          {/* Submit Message */}
+          {submitMessage && (
+            <div className={`p-4 rounded-lg ${
+              submitMessage.type === 'success' 
+                ? 'bg-green-50 border border-green-200 text-green-800' 
+                : 'bg-red-50 border border-red-200 text-red-800'
+            }`}>
+              <p className="text-sm font-medium">{submitMessage.text}</p>
+            </div>
+          )}
 
           {/* Actions */}
           <div className="flex gap-3 pt-4 border-t">
-            <Button type="button" variant="outline" onClick={onClose} className="flex-1 bg-transparent">
+            <Button 
+              type="button" 
+              variant="outline" 
+              onClick={onClose} 
+              className="flex-1 bg-transparent"
+              disabled={isSubmitting}
+            >
               Hủy bỏ
             </Button>
-            <Button type="submit" className="flex-1 bg-[#f97316] hover:bg-[#ea580c] text-white">
-              Gửi đề cử
+            <Button 
+              type="submit" 
+              className="flex-1 bg-[#f97316] hover:bg-[#ea580c] text-white"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? 'Đang gửi...' : 'Gửi đề cử'}
             </Button>
           </div>
         </form>

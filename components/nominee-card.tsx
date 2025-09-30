@@ -20,7 +20,7 @@ export function NomineeCard({ nominee, index }: NomineeCardProps) {
     <Card className="nominee-card group overflow-hidden border-0 bg-white/95 backdrop-blur-sm shadow-xl">
       <div className="relative aspect-square overflow-hidden">
         <img
-          src={nominee.image || "/placeholder.svg"}
+          src={`https://drive.usercontent.google.com/download?id=${nominee.image}` || "/placeholder.svg"}
           alt={nominee.name}
           className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
