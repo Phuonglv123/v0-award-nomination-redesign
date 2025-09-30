@@ -101,7 +101,7 @@ export function NominationModal({ isOpen, onClose }: NominationModalProps) {
                   value={formData.nomineeName}
                   onChange={handleInputChange}
                   required
-                  className="mt-1"
+                  className="mt-1 text-gray-900"
                   placeholder="Nhập họ và tên"
                 />
               </div>
@@ -116,7 +116,7 @@ export function NominationModal({ isOpen, onClose }: NominationModalProps) {
                   value={formData.nomineeEmail}
                   onChange={handleInputChange}
                   required
-                  className="mt-1"
+                  className="mt-1 text-gray-900"
                   placeholder="email@galaxy.edu.vn"
                 />
               </div>
@@ -133,7 +133,7 @@ export function NominationModal({ isOpen, onClose }: NominationModalProps) {
                   value={formData.department}
                   onChange={handleInputChange}
                   required
-                  className="mt-1"
+                  className="mt-1 text-gray-900"
                   placeholder="Ví dụ: Trung tâm Tuyển sinh"
                 />
               </div>
@@ -146,7 +146,7 @@ export function NominationModal({ isOpen, onClose }: NominationModalProps) {
                   name="position"
                   value={formData.position}
                   onChange={handleInputChange}
-                  className="mt-1"
+                  className="mt-1 text-gray-900"
                   placeholder="Ví dụ: Chuyên viên tuyển sinh"
                 />
               </div>
@@ -171,7 +171,7 @@ export function NominationModal({ isOpen, onClose }: NominationModalProps) {
                 onChange={handleInputChange}
                 required
                 rows={3}
-                className="mt-1"
+                className="mt-1 text-gray-900"
                 placeholder="Mô tả các thành tích, kết quả công việc nổi bật..."
               />
             </div>
@@ -187,7 +187,7 @@ export function NominationModal({ isOpen, onClose }: NominationModalProps) {
                 onChange={handleInputChange}
                 required
                 rows={4}
-                className="mt-1"
+                className="mt-1 text-gray-900"
                 placeholder="Giải thích tại sao bạn đề cử người này cho giải thưởng..."
               />
             </div>
@@ -211,7 +211,7 @@ export function NominationModal({ isOpen, onClose }: NominationModalProps) {
                   value={formData.nominatorName}
                   onChange={handleInputChange}
                   required
-                  className="mt-1"
+                  className="mt-1 text-gray-900"
                   placeholder="Nhập họ và tên của bạn"
                 />
               </div>
@@ -226,7 +226,7 @@ export function NominationModal({ isOpen, onClose }: NominationModalProps) {
                   value={formData.nominatorEmail}
                   onChange={handleInputChange}
                   required
-                  className="mt-1"
+                  className="mt-1 text-gray-900"
                   placeholder="email@galaxy.edu.vn"
                 />
               </div>
