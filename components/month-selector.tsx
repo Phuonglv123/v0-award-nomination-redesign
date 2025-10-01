@@ -3,21 +3,20 @@ import { ChevronDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 
-const months = [
-  { value: 5, label: "Tháng 5", quarter: "Q2" },
-  { value: 6, label: "Tháng 6", quarter: "Q2" },
-  { value: 7, label: "Tháng 7", quarter: "Q3" },
-  { value: 8, label: "Tháng 8", quarter: "Q3" },
-  { value: 9, label: "Tháng 9", quarter: "Q3" },
-]
-
-interface MonthSelectorProps {
-  selectedMonth: number
-  onMonthChange: (month: number) => void
+interface MonthData {
+  value: string
+  label: string
+  nominees: any[]
 }
 
-export function MonthSelector({ selectedMonth, onMonthChange }: MonthSelectorProps) {
-  const currentMonth = months.find((m) => m.value === selectedMonth)
+interface MonthSelectorProps {
+  selectedMonth: string
+  onMonthChange: (month: string) => void
+  availableMonths: MonthData[]
+}
+
+export function MonthSelector({ selectedMonth, onMonthChange, availableMonths }: MonthSelectorProps) {
+  const currentMonth = availableMonths.find((m) => m.value === selectedMonth)
 
   return (
     <div className="flex items-center gap-4">
@@ -25,19 +24,21 @@ export function MonthSelector({ selectedMonth, onMonthChange }: MonthSelectorPro
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button className="min-w-[140px] justify-between bg-[#f97316] hover:bg-[#ea580c] text-white border-0">
-            {currentMonth?.label}
+            {currentMonth?.label || "Chọn tháng"}
             <ChevronDown className="h-4 w-4 opacity-70" />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="w-[200px]">
-          {months.map((month) => (
+          {availableMonths.map((month) => (
             <DropdownMenuItem
               key={month.value}
               onClick={() => onMonthChange(month.value)}
               className="flex items-center justify-between"
             >
               <span>{month.label}</span>
-              <span className="text-xs text-muted-foreground">{month.quarter}</span>
+              <span className="text-xs text-muted-foreground">
+                {month.nominees.length} người
+              </span>
             </DropdownMenuItem>
           ))}
         </DropdownMenuContent>

@@ -3,28 +3,31 @@
 import { Award, Star, Plus } from "lucide-react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
+import { dataMonth } from "@/data/data"
 
 interface NominationHeaderProps {
-  selectedMonth: number
+  selectedMonth: string
   nomineeCount: number
-  onNominateClick: () => void // Added prop for nomination button click
+  onNominateClick: () => void
 }
 
 export function NominationHeader({ selectedMonth, nomineeCount, onNominateClick }: NominationHeaderProps) {
-  const monthNames = {
-    5: "tháng 5",
-    6: "tháng 6",
-    7: "tháng 7",
-    8: "tháng 8",
-    9: "tháng 9",
-  }
-
-  const quarterInfo = {
-    5: "Q2",
-    6: "Q2",
-    7: "Q3",
-    8: "Q3",
-    9: "Q3",
+  // Tìm thông tin tháng từ dữ liệu
+  const monthInfo = dataMonth.find(month => month.value === selectedMonth)
+  const monthLabel = monthInfo?.label || "Chưa chọn"
+  
+  // Xác định quý dựa trên tháng
+  const getQuarter = (monthValue: string) => {
+    const num = parseInt(monthValue)
+    if (num >= 1 && num <= 3) return "Q1"
+    if (num >= 4 && num <= 6) return "Q2" 
+    if (num >= 7 && num <= 9) return "Q3"
+    if (num >= 10 && num <= 12) return "Q4"
+    if (num === 13) return "Q1"
+    if (num === 14) return "Q2"
+    if (num === 15) return "Q3"
+    if (num === 16) return "Q4"
+    return "Q1"
   }
 
   return (
@@ -56,7 +59,7 @@ export function NominationHeader({ selectedMonth, nomineeCount, onNominateClick 
             <span className="text-white">2025</span>
             <br />
             <span className="text-2xl sm:text-3xl lg:text-4xl mt-4 block text-white/90">
-              Danh sách đề cử {monthNames[selectedMonth as keyof typeof monthNames]}
+              Danh sách đề cử {monthLabel.toLowerCase()}
             </span>
           </h1>
 
@@ -74,8 +77,7 @@ export function NominationHeader({ selectedMonth, nomineeCount, onNominateClick 
             <div className="flex items-center gap-2">
               <Award className="h-5 w-5 text-white" />
               <span className="text-sm font-medium text-white/80">
-                {monthNames[selectedMonth as keyof typeof monthNames]} -{" "}
-                {quarterInfo[selectedMonth as keyof typeof quarterInfo]}/2025
+                {monthLabel} - {getQuarter(selectedMonth)}/2025
               </span>
             </div>
           </div>
