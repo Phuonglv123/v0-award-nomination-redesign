@@ -301,7 +301,7 @@ export function NominationModal({ isOpen, onClose }: NominationModalProps) {
               type="button" 
               variant="outline" 
               onClick={onClose} 
-              className="flex-1 bg-transparent"
+              className="flex-1 bg-transparent text-gray-700 hover:bg-gray-100"
               disabled={isSubmitting}
             >
               Hủy bỏ

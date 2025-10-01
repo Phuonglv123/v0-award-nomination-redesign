@@ -27,14 +27,14 @@ export function NomineeCard({ nominee, index }: NomineeCardProps) {
           className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-        <div className="absolute bottom-4 left-4 right-4">
+        {/* <div className="absolute bottom-4 left-4 right-4">
           <div className="flex items-center gap-2 mb-2">
             <Award className="h-4 w-4 text-[#f97316]" />
             <Badge className="bg-[#f97316]/20 text-[#f97316] border-[#f97316]/30 hover:bg-[#f97316]/30">
               Đề cử #{index + 1}
             </Badge>
           </div>
-        </div>
+        </div> */}
       </div>
 
       <CardContent className="p-6">
