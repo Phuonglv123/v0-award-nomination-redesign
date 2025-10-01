@@ -16,7 +16,7 @@ interface NominationResponse {
   error?: string;
 }
 
-const WEBHOOK_URL = 'https://n8n.ican.vn/webhook-test/2a2a510b-af60-4000-b250-323b7a1b3e0d';
+const WEBHOOK_URL = "https://n8n.ican.vn/webhook/2a2a510b-af60-4000-b250-323b7a1b3e0d";
 
 export const submitNomination = async (data: NominationData): Promise<NominationResponse> => {
   try {
