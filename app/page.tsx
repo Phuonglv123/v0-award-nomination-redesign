@@ -27,10 +27,10 @@ const formatNomineeForDisplay = (nominee: any) => ({
   id: nominee.name + nominee.department, // Tạo id duy nhất
   name: nominee.name,
   department: nominee.department,
-  image: nominee.img ? `https://drive.google.com/thumbnail?id=${nominee.img}` : "/placeholder-user.jpg",
+  image: nominee.img,
   achievements: [nominee.achive, nominee.title].filter(Boolean),
-  description: nominee.desc || ""
-})
+  description: nominee.desc || "",
+});
 
 export default function NominationPage() {
   const availableMonths = getAvailableMonths()

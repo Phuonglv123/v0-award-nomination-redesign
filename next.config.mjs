@@ -7,7 +7,8 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    unoptimized: true,
+    //unoptimized: true,
+    domains: ['drive.usercontent.google.com',],
   },
   output: 'standalone',
 }
