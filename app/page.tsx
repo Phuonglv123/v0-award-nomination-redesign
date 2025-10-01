@@ -12,6 +12,7 @@ import { dataMonth, dataNominee } from "@/data/data"
 const getAvailableMonths = () => {
   const monthsWithData = [...new Set(dataNominee.map(nominee => nominee.month))]
   
+  console.log("Months with data:", monthsWithData) // Debug line
   return dataMonth
     .filter(month => monthsWithData.includes(month.value))
     .map(month => ({
