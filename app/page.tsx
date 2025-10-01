@@ -49,19 +49,22 @@ export default function NominationPage() {
         nomineeCount={currentNominees.length}
         onNominateClick={() => setIsNominationModalOpen(true)}
       />
+      <StatsSection />
 
       <div className="mx-auto max-w-7xl px-6 py-12">
-        <MonthTabs 
-          selectedMonth={selectedMonth} 
-          onMonthChange={setSelectedMonth} 
+        <MonthTabs
+          selectedMonth={selectedMonth}
+          onMonthChange={setSelectedMonth}
           availableMonths={availableMonths}
         />
       </div>
 
-      <StatsSection />
       <NomineeGrid nominees={currentNominees} />
 
-      <NominationModal isOpen={isNominationModalOpen} onClose={() => setIsNominationModalOpen(false)} />
+      <NominationModal
+        isOpen={isNominationModalOpen}
+        onClose={() => setIsNominationModalOpen(false)}
+      />
     </div>
-  )
+  );
 }

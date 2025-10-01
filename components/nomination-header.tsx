@@ -59,25 +59,27 @@ export function NominationHeader({ selectedMonth, nomineeCount, onNominateClick 
             <span className="text-white">2025</span>
             <br />
             <span className="text-2xl sm:text-3xl lg:text-4xl mt-4 block text-white/90">
-              Danh sách đề cử {monthLabel.toLowerCase()}
+              Danh sách nhân viên xuất sắc tháng 5,6 Quý 2
             </span>
           </h1>
 
           <p className="mt-8 text-pretty text-lg leading-8 text-white/80 sm:text-xl">
-            Chương trình xây dựng nhân tôn vinh các cá nhân, tập thể có thành tích xuất sắc, góp phần vào sự phát triển
-            của Galaxy Education
+            Chương trình xây dựng nhân tôn vinh các cá nhân, tập thể có thành
+            tích xuất sắc, góp phần vào sự phát triển của Galaxy Education
           </p>
 
           <div className="mt-12 flex items-center justify-center gap-8">
             <div className="flex items-center gap-2">
               <Star className="h-5 w-5 text-[#f97316] fill-[#f97316]" />
-              <span className="text-sm font-medium text-white/80">{nomineeCount} ứng viên xuất sắc</span>
+              <span className="text-sm font-medium text-white/80">
+                9 ứng viên xuất sắc
+              </span>
             </div>
             <div className="h-4 w-px bg-white/20" />
             <div className="flex items-center gap-2">
               <Award className="h-5 w-5 text-white" />
               <span className="text-sm font-medium text-white/80">
-                {monthLabel} - {getQuarter(selectedMonth)}/2025
+                05 - 06/2025
               </span>
             </div>
           </div>
@@ -94,5 +96,5 @@ export function NominationHeader({ selectedMonth, nomineeCount, onNominateClick 
         </div>
       </div>
     </header>
-  )
+  );
 }
